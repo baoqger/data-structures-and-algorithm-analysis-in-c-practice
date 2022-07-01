@@ -48,6 +48,11 @@ int main()
   Polynomial B2 = initializePolynomial(coefficient20, exponent20, 2);
   Polynomial B3 = initializePolynomial(coefficient21, exponent21, 2);
   Polynomial C20 = multiply1(B2,B3);
+  printf("B2: ");
+  printPolynomial(B2);
+  printf("B3: ");
+  printPolynomial(B3);
+  printf("B2 * B3 = ");  
   printPolynomial(C20);
 
   printf("Algorithm 2\n");
