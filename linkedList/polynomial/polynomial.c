@@ -175,7 +175,7 @@ multiply1(Polynomial A, Polynomial B)
 {
   Polynomial R = malloc(sizeof(struct Node));
   PtrToNode dummyRPrev = R;
-  PtrToNode dummyR = R;
+  PtrToNode dummyR = R->Next;
   PtrToNode dummyA = A->Next;
   PtrToNode dummyB = B->Next;
 
@@ -213,7 +213,7 @@ multiply1(Polynomial A, Polynomial B)
         insert(tmpCoefficient, tmpExponent, dummyRPrev);
       }
       
-      dummyR = R; // reset to list header
+      dummyR = R->Next; // reset to list header
       dummyB = dummyB->Next;
     }
     dummyB = B->Next; // reset to list header

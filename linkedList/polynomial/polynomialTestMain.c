@@ -56,6 +56,7 @@ int main()
   printPolynomial(C20);
 
   printf("Algorithm 2\n");
+  printf("B2 * B3 = ");
   Polynomial C21 = multiply2(B2,B3);
   printPolynomial(C21);
 
