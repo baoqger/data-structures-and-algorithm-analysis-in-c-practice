@@ -1,0 +1,58 @@
+///////////////////////
+// LINKED LIST TEST
+///////////////////////
+
+TEST: intersectionSortedLists
+List 1 to intersect:1->2->3->3
+List 2 to intersect:1->3->3
+Intersection result:1->3
+
+TEST: unionSortedLists
+List 1 to union:1->3->3
+List 2 to union:2->3->4->5
+Union result:1->2->3->4->5
+
+TEST: printList
+23->44->45->57->89->-1
+
+TEST: printListReverse
+Original:
+23->44->45->57->89->-1
+Reverse:
+-1->89->57->45->44->23->
+
+TEST: printLots
+44, 57, No element in position 8, -1, No element in position 7, No element in position 6, 
+
+TEST: reverseList
+Original:
+1->2->3
+1st Reverse:
+3->2->1
+2nd Reverse:
+1->2->3
+3rd Reverse:
+3->2->1
+
+TEST: swap
+23->45->44->57->89->-1
+Cannot swap because of the -1 is the last node
+23->45->44->57->89->-1
+23->44->45->57->89->-1
+1->2->3->3->4
+
+TEST: find
+Pass all
+
+TEST: deleteNode
+Original list: 1->2->3
+After deletion: 1->3
+
+TEST: selfAdjustInsert
+Before self-adjust insert:23->44->45->57->89->-1
+After self-adjust insert:10->23->44->45->57->89->-1
+
+TEST: selfAdjustFind
+Before self-adjust find:23->44->45->57->89->-1
+After self-adjust find:45->23->44->57->89->-1
+

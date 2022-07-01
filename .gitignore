@@ -1,0 +1,16 @@
+*~
+.vscode
+.cproject
+.project
+\#*
+.#*
+main
+*.out
+*.dot
+main.dSYM
+*.png
+scratch
+gdb.txt
+.idea/
+CMakeLists.txt
+cmake-build-debug/
