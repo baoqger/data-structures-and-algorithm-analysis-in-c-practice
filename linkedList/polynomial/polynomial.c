@@ -236,6 +236,7 @@ multiply1(Polynomial A, Polynomial B)
  * O(N); we deleteList during the while loop taking O(MN). So, the total runtime is:
  * O(M^2 N) + O(M) + O(N) + O(MN) = O(M^2 N) 
  */
+// 如何准确的估算这个时间复杂度呢?
 Polynomial
 multiply2(Polynomial A, Polynomial B)
 {
@@ -270,10 +271,10 @@ multiply2(Polynomial A, Polynomial B)
     dummyLong = A->Next;
     Long = A;
   }
-
+  // 以上都是准备
   while(dummyShort != NULL)
   {
-    dummyTmp = Tmp;
+    dummyTmp = Tmp; // 存储每次计算的list with n terms
     while(dummyLong != NULL)
     {
       int coefficient = dummyShort->coefficient * dummyLong->coefficient;
