@@ -50,6 +50,7 @@ IsLast(Pos P, List L)
 
 /* Find the first appearance of the elem in the list
  */
+// 不用考虑lazy delte的node吗?
 Pos
 Find(ET elem, List L)
 {
@@ -73,7 +74,7 @@ deleteNode(ET elem, List L)
 {
   Pos dummyL = L->Next;
   Pos dummyPrev = L;
-
+  // 这个实现里的dummyPrev并无用
   for(;
       dummyL != NULL;
       dummyPrev = dummyL, dummyL = dummyL->Next)
