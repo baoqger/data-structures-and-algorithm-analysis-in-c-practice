@@ -85,7 +85,7 @@ push (ET elem, Stack S)
   }
   if (elem < topArrayMin(S))
   {
-    popArrayMin(S);
+    // popArrayMin(S); // 此处为什么要pop
     pushArrayMin(elem, S);
   }
   S->Array[++S->TopOfStack] = elem;
@@ -132,7 +132,7 @@ topAndPop(Stack S)
 }
 
 ET
-findMin(Stack S)
+findMinStack(Stack S)
 {
   return S->ArrayMin[S->TopOfStackMin];
 }

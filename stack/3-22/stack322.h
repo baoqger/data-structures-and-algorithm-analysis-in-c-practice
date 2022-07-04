@@ -54,7 +54,7 @@ ET topAndPop(Stack S);
 
 /* Find the minimum element in the stack
  */
-ET findMin(Stack S);
+ET findMinStack(Stack S);
 
 #endif
 

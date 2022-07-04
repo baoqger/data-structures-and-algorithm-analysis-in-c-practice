@@ -1,5 +1,4 @@
 #include "stack322.h"
-#include "utility.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,7 +29,7 @@ test_initalizeStack()
 {
   printf("TEST: initializeStack\n");
 
-  ET test_Q1[3] = {1,2,3};
+  ET test_Q1[3] = {3, 2, 1};
   Stack Q1 = initializeStack(test_Q1, 3);
   printStack(Q1);
   disposeStack(Q1);
@@ -97,6 +96,6 @@ test_findMin()
   ET test_Q1[4] = {1,10,1,100};
   Stack Q1 = initializeStack(test_Q1, 4);
   printStack(Q1);
-  printf("The smallest element in the stack: %d\n", findMin(Q1));
+  printf("The smallest element in the stack: %d\n", findMinStack(Q1));
   disposeStack(Q1);
 }
