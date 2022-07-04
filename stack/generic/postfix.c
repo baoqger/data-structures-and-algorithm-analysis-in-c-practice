@@ -29,7 +29,7 @@ evaluate_postfix(char* filename)
     /* printf("character c read: "); */
     /* putc(c, stdout); */
     /* printf("\n"); */
-    if(isdigit(c))
+    if(isdigit(c)) // isdigit is a std function
     {
       push(c-'0', s);
     }

@@ -102,6 +102,9 @@ deleteMarkedNodes(List L)
   {
     if (dummyL->deleted == true)
     {
+      // 现在的写法可以成为 post-free: 1. 更新prev, 2. 更新dummy, 3.free dummy。free是放在最后执行
+      // 另一种写法是 free在第二步执行，这个时候, tmp需要cache dummy->next的node;
+      // 两种方法都可以工作的
       Pos tmp = dummyL;
       dummyLPrev->Next = dummyL->Next;
       dummyL = dummyL->Next;

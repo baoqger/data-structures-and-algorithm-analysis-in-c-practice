@@ -20,7 +20,7 @@ OUTPUT_FILE=main
 .PHONY: test
 
 test:
-	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(LIBS) $(SRC_FILES) -o $(OUTPUT_FILE)
+	$(C_COMPILER) $(SRC_FILES) -o $(OUTPUT_FILE) $(CFLAGS) $(INC_DIRS) $(LIBS) 
 
 clean:
 	rm -rf $(OUTPUT_FILE)

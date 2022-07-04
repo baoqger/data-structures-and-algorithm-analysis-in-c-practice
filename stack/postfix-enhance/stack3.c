@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "stack3.h"
 #include "utility.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,7 +69,6 @@ push (ET elem, Stack S)
   {
     resizeStack(S);
   }
-  // 此处可以用.push()方法吗？
   S->Array[++S->TopOfStack] = elem;
 }
 
@@ -83,7 +82,6 @@ top(Stack S)
   
 /* Pop the top element out of the Stack
  */
-// 这个pop的行为，没有把element返回
 void
 pop(Stack S)
 {
@@ -98,38 +96,6 @@ topAndPop(Stack S)
   return S->Array[S->TopOfStack--];
 }
 
-/* initialize the Stack from the given array
- * with the array[0] being the bottom of the Stack
- */
-Stack initializeStack(int array[], int length)
-{
-  Stack s = malloc(sizeof(struct StackRecord));
-  s->Capacity = length;
-  s->Array = calloc(length, sizeof(int));
-  int i;
-  for ( i = 0; i < length; i++)
-  {
-    s->Array[i] = array[i];
-  }
-  s->TopOfStack = s->Capacity - 1;
-  return s;
-}
-
-void
-printStack(Stack S)
-{
-  ET* arrayS = S->Array;
-  int i;
-  for (i = 0; i <= S->TopOfStack; i++)
-  {
-    printf("%s%d%s",
-           "|",
-           arrayS[i],
-           (i == S->TopOfStack) ? ("| <-top") : (""));
-  }
-  printf("\n");
-}
-// 使用reference pointer
 static void
 resizeStackArray(ET** array, int length)
 {

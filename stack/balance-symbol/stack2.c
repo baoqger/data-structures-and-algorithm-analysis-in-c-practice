@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+//这个实现是基于linked list的
 
 struct Node
 {

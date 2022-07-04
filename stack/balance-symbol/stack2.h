@@ -31,6 +31,7 @@ void push (char* symbol, int lineNo, Stack S);
  */
 char* topSymbol(Stack S);
 
+// line number是什么?
 /* Check the top element's line number of the stack
  */
 int topLineNo(Stack S);
