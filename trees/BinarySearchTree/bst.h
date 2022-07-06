@@ -22,7 +22,7 @@ Position findMaxBST(BST);
 BST insert(ET, BST);
 BST delete(ET, BST);
 ET retrieve(Position);
-
+Position find_iterative(ET, BST);
 /*
  * Create a BST based upon the given array
  */

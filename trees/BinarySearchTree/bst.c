@@ -18,7 +18,21 @@ makeEmpty(BST T)
   }
   return NULL;
 }
-  
+
+// find in iterative way
+Position 
+find_iterative(ET elem, BST T)
+{
+    while(T != NULL && T->Element != elem) {
+        if (elem < T->Element) {
+            T = T->Left; 
+        } else {
+            T = T->Right;
+        }
+    }
+    return T;
+}
+
 Position
 find(ET elem, BST T)
 {
@@ -94,6 +108,8 @@ delete(ET elem, BST T)
   else // one or zero children
   {
     tmpCell = T;
+    // 对于leaf node，会运行下面这句, 将T置为NULL, 因为lleaf node的
+    // right child也是NULL
     if (T->Right == NULL)
       T = T->Left;
     else if (T->Left == NULL)

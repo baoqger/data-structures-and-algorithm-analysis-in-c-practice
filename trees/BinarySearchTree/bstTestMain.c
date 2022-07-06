@@ -22,7 +22,7 @@ void test_similar();
 void test_same();
 void test_inorderTraversal();
 void test_diameterOfBST();
-
+void verify_deleteLeafNode();
 int
 main()
 {
@@ -31,6 +31,7 @@ main()
   printf("///////////////////////\n\n");
   
   test_initializeBST();
+  verify_deleteLeafNode();
   test_find();              printf("\n");
   test_findMinBST();           printf("\n");
   test_findMaxBST();           printf("\n");
@@ -51,6 +52,7 @@ main()
   return 0;
 }
 
+
 void
 generate_dot(BST T)
 {
@@ -68,12 +70,23 @@ delete_tree(BST T)
   free(T);
 }  
 
+void 
+verify_deleteLeafNode() {
+    printf("Test: delete leaf node\n");
+    ET test_array[] = {2, 1, 3};
+    BST T = initializeBST(test_array, 3);
+    generate_dot(T);
+    delete(1, T);
+    generate_dot(T);
+    delete_tree(T);    
+}
+
 void
 test_initializeBST()
 {
   printf("TEST: initializeBST\n");
-  ET test_array[] = {2,1,3};
-  BST T = initializeBST(test_array, 3);
+  ET test_array[] = {2,1,3,4,5};
+  BST T = initializeBST(test_array, 5);
   generate_dot(T);
   delete_tree(T);
 }
