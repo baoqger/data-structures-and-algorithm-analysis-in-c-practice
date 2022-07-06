@@ -91,7 +91,7 @@ delete(ET elem, BST T)
       T->Element = tmpCell->Element;
       T->Right = delete(T->Element, T->Right);
   }
-  else // one or two children
+  else // one or zero children
   {
     tmpCell = T;
     if (T->Right == NULL)
