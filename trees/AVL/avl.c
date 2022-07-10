@@ -1,5 +1,4 @@
 #include "avl.h"
-0;136;0c
 struct AVLTreeNode
 {
   ET Element;
@@ -43,18 +42,18 @@ find(ET elem, AVL T)
 }
 
 Position
-findMin(AVL T)
+findMinAVLTree(AVL T)
 {
   if (T == NULL)
     return NULL;
   else if (T->Left == NULL)
     return T;
   else
-    return findMin(T->Left);
+    return findMinAVLTree(T->Left);
 }
 
 Position
-findMax(AVL T)
+findMaxAVLTree(AVL T)
 {
   if (T != NULL)
     while (T->Right != NULL)
@@ -343,7 +342,7 @@ delete(ET elem, AVL T)
   else // we found the element to be deleted
   if (T->Left != NULL && T->Right != NULL) // two children
   {
-      tmpCell = findMin(T->Right);
+      tmpCell = findMinAVLTree(T->Right);
       T->Element = tmpCell->Element;
       T->Right = delete(T->Element, T->Right);
   }

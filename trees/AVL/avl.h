@@ -13,8 +13,8 @@ typedef Position AVL;
 
 AVL makeEmpty(AVL);
 Position find(ET, AVL);
-Position findMin(AVL);
-Position findMax(AVL);
+Position findMinAVLTree(AVL);
+Position findMaxAVLTree(AVL);
 
 /*
  * MAW 4.18 Write the remaining procedures to implement AVL single and double rotations.

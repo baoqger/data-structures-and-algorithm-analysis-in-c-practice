@@ -58,7 +58,7 @@ enqueue(ET elem, QueueADT Q)
 ET
 front(QueueADT Q)
 {
-  return Q->Front->Next->Element;
+  return Q->Front->Next->Element; // 为什么不是Q->Front->Element
 }
   
 void
