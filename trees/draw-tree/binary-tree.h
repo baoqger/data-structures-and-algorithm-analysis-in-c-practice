@@ -8,3 +8,5 @@ Tree make_empty(Tree);
 Position find_min(Tree);
 Position find_max(Tree);
 Position find(Tree);
+Tree insert(ET, Tree);
+Tree delete(ET, Tree);
