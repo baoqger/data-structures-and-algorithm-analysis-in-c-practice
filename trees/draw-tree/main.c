@@ -16,6 +16,12 @@ int main() {
     root = insert(2, root);
     root = insert(34, root);
     root = insert(15, root);
+    root = insert(7, root);
+    root = insert(6, root);
+    root = insert(14, root);
+    root = insert(13, root);
+    root = insert(12, root);
+    root = insert(8, root);
 
     print_ascii_tree(root);
 }

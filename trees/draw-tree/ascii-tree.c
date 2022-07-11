@@ -20,7 +20,7 @@ int rprofile[MAX_HEIGHT];
 #define INFINITY (1 << 20);
 
 // adjust the gap between left and right nodes
-int gap = 3;
+int gap = 5;
 
 // used for printing next node in the same level,
 // this is the x coordinate of  the next char printed
@@ -121,49 +121,39 @@ void compute_edge_lengths(AsciiTree node)
   compute_edge_lengths(node->right);
 
   /* first fill in the edge_length of node */
-  if (node->right == NULL && node->left == NULL) 
-  {
+  if (node->right == NULL && node->left == NULL) {
 	  node->edge_length = 0;
   } 
-  else 
-  {
-    if (node->left != NULL) 
-    {
+  else {
+    if (node->left != NULL) {
 	    for (i=0; i<node->left->height && i < MAX_HEIGHT; i++) 
       {
 		    rprofile[i] = -INFINITY;
 	    }
 	    compute_rprofile(node->left, 0, 0);
 	    hmin = node->left->height;
-    } 
-    else 
-    {
+    } else {
 	    hmin = 0;
     }
-	  if (node->right != NULL) 
+	if (node->right != NULL) 
     {
-	    for (i=0; i<node->right->height && i < MAX_HEIGHT; i++) 
-      {
+	    for (i=0; i<node->right->height && i < MAX_HEIGHT; i++) {
 		    lprofile[i] = INFINITY;
 	    }
 	    compute_lprofile(node->right, 0, 0);
 	    hmin = MIN(node->right->height, hmin);
-    } 
-    else 
-    {
+    } else {
 	    hmin = 0;
     }
-	  delta = 4;
-	  for (i=0; i<hmin; i++) 
-    {
+	delta = 4;
+	for (i=0; i<hmin; i++) {
 	    delta = MAX(delta, gap + 1 + rprofile[i] - lprofile[i]);
     }
 	  
     //If the node has two children of height 1, then we allow the
     //two leaves to be within 1, instead of 2 
-	  if (((node->left != NULL && node->left->height == 1) ||
-	      (node->right != NULL && node->right->height == 1))&&delta>4) 
-    {
+	if (((node->left != NULL && node->left->height == 1) ||
+	      (node->right != NULL && node->right->height == 1))&&delta>4) {
       delta--;
     }
 	    
