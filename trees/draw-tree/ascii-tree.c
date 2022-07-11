@@ -9,7 +9,7 @@ struct AsciiNode {
     AsciiTree right;
     int edge_length; // length of the edge from this node to its child
     int height;
-    int lablen; // ?
+    int lablen; // length of node label
     int parent_dir; // -1 = I am left, 0 = I am root, 1 = I am right
     char label[11]; //max supported unit32 in dec, 10 digits max
 };
@@ -132,12 +132,11 @@ void compute_edge_lengths(AsciiTree node)
 
   /* first fill in the edge_length of node */
   if (node->right == NULL && node->left == NULL) {
-	  node->edge_length = 0;
+	  node->edge_length = 0; // edge length of leaf node is zero
   } 
   else {
     if (node->left != NULL) {
-	    for (i=0; i<node->left->height && i < MAX_HEIGHT; i++) 
-      {
+	    for (i=0; i<node->left->height && i < MAX_HEIGHT; i++) {
 		    rprofile[i] = -INFINITY;
 	    }
 	    compute_rprofile(node->left, 0, 0);
@@ -171,10 +170,10 @@ void compute_edge_lengths(AsciiTree node)
   }
 
   //now fill in the height of node
-  h = 1;
+  h = 1; // height of leaf  node is 1
   if (node->left != NULL) 
   {
-	  h = MAX(node->left->height + node->edge_length + 1, h);
+	  h = MAX(node->left->height + node->edge_length + 1, h); // height of node equals to the height of child + the edge_length of the node
   }
   if (node->right != NULL) 
   {
@@ -190,44 +189,35 @@ void print_level(AsciiTree node, int x, int level)
   int i, isleft;
   if (node == NULL) return;
   isleft = (node->parent_dir == -1);
-  if (level == 0) 
-  {
-	  for (i=0; i<(x-print_next-((node->lablen-isleft)/2)); i++) 
-    {
+  if (level == 0) { // print root node
+    for (i=0; i<(x-print_next-((node->lablen-isleft)/2)); i++) {
 	    printf(" ");
     }
-	  print_next += i;
-	  printf("%s", node->label);
-	  print_next += node->lablen;
-  } 
-  else if (node->edge_length >= level) 
-  {
-	  if (node->left != NULL) 
-    {
-	    for (i=0; i<(x-print_next-(level)); i++) 
-      {
+	print_next += i;
+	printf("%s", node->label);
+	print_next += node->lablen;
+  
+  } else if (node->edge_length >= level) { // print the edge
+	  if (node->left != NULL) {
+	    for (i=0; i<(x-print_next-(level)); i++) {
 		    printf(" ");
 	    }
 	    print_next += i;
 	    printf("/");
 	    print_next++;
-    }
-	  if (node->right != NULL) 
-    {
-	    for (i=0; i<(x-print_next+(level)); i++) 
-      {
+      }
+	  if (node->right != NULL) {
+	    for (i=0; i<(x-print_next+(level)); i++) {
 		    printf(" ");
 	    }
 	    print_next += i;
-	    printf("\\");
+	    printf("\\"); // escape 
 	    print_next++;
     }
-  } 
-  else 
-  {
+  } else {
 	  print_level(node->left, 
-                x-node->edge_length-1, 
-                level-node->edge_length-1);
+                x - node->edge_length -  1, 
+                level - node->edge_length - 1);
 	  print_level(node->right, 
                 x+node->edge_length+1, 
                 level-node->edge_length-1);
@@ -244,15 +234,15 @@ void print_ascii_tree(Tree t)
   compute_edge_lengths(proot);
   for (i=0; i<proot->height && i < MAX_HEIGHT; i++) 
   {
-	  lprofile[i] = INFINITY;
+	  lprofile[i] = INFINITY; // initialize lprofile[]
   }
-  compute_lprofile(proot, 0, 0);
+  compute_lprofile(proot, 0, 0); // compute lprofile[]
   xmin = 0;
   for (i = 0; i < proot->height && i < MAX_HEIGHT; i++) 
   {
-	  xmin = MIN(xmin, lprofile[i]);
+	  xmin = MIN(xmin, lprofile[i]); // get the minimum of lprofile[]
   }
-  for (i = 0; i < proot->height; i++) 
+  for (i = 0; i < proot->height; i++) // print the tree by value 
   {
 	  print_next = 0;
 	  print_level(proot, -xmin, i);
