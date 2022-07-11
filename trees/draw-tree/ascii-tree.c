@@ -34,26 +34,30 @@ int MAX(int X, int Y) {
     return ((X) > (Y) ? (X) : (Y));
 }
 
-AsciiTree build_ascii_tree_recursive(Tree t) {
-    AsciiTree node; 
-    
-    if(t == NULL) {
-        return NULL;
-    } 
+AsciiTree build_ascii_tree_recursive(Tree t) 
+{
+  AsciiTree node;
+  
+  if (t == NULL) return NULL;
 
-    node = malloc(sizeof(struct AsciiNode));
-    node->left = build_ascii_tree_recursive(t->left);
-    node->right = build_ascii_tree_recursive(t->right);
+  node = malloc(sizeof(struct AsciiNode));
+  node->left = build_ascii_tree_recursive(t->left);
+  node->right = build_ascii_tree_recursive(t->right);
+  
+  if (node->left != NULL) 
+  {
+    node->left->parent_dir = -1;
+  }
 
-    if(node->left != NULL) {
-        node->left->parent_dir = -1;
-    } 
-    if(node->right != NULL) {
-        node->right->parent_dir = 1;
-    }
-    sprintf(node->label, "%d", t->element);
-    node->lablen = strlen(node->label);
-    return node;
+  if (node->right != NULL) 
+  {
+    node->right->parent_dir = 1;
+  }
+
+  sprintf(node->label, "%d", t->element);
+  node->lablen = strlen(node->label);
+
+  return node;
 }
 
 
@@ -83,32 +87,38 @@ void free_ascii_tree(AsciiTree node){
 // it assumes that the center of the label of the root of this tree 
 // is located at a position(x,y). 
 // It assumes that the edge_length fields have been computed for this tree
-void compute_lprofile(AsciiTree node, int x, int y) {
-    int i, isleft;
-    if(node == NULL) return;
-    isleft = (node->parent_dir == 1);
-    lprofile[y] = MIN(lprofile[y], x-((node->lablen - isleft)/2));
-    if(node->left != NULL) {
-        for(i = 1; i <= node->edge_length && y+i < MAX_HEIGHT; i++) {
-            lprofile[y+i] = MIN(lprofile[y+i], x-i);
-        }
-    } 
-    compute_lprofile(node->left, x - node->edge_length - 1, y + node->edge_length + 1);
-    compute_lprofile(node->right, x + node->edge_length + 1, y + node->edge_length + 1);
+void compute_lprofile(AsciiTree node, int x, int y) 
+{
+  int i, isleft;
+  if (node == NULL) return;
+  isleft = (node->parent_dir == -1);
+  lprofile[y] = MIN(lprofile[y], x-((node->lablen-isleft)/2));
+  if (node->left != NULL) 
+  {
+	  for (i=1; i <= node->edge_length && y+i < MAX_HEIGHT; i++) 
+    {
+	    lprofile[y+i] = MIN(lprofile[y+i], x-i);
+    }
+  }
+  compute_lprofile(node->left, x-node->edge_length-1, y+node->edge_length+1);
+  compute_lprofile(node->right, x+node->edge_length+1, y+node->edge_length+1);
 }
 
-void compute_rprofile(AsciiTree node, int x, int y) {
-    int i, notleft;
-    if(node == NULL) return;
-    notleft = (node->parent_dir != -1);
-    rprofile[y] = MIN(rprofile[y], x+((node->lablen - notleft)/2));
-    if(node->right != NULL) {
-        for(i = 1; i <= node->edge_length && y+i < MAX_HEIGHT; i++) {
-            rprofile[y+i] = MIN(rprofile[y+i], x+i);
-        }
-    } 
-    compute_rprofile(node->left, x - node->edge_length - 1, y + node->edge_length + 1);
-    compute_rprofile(node->right, x + node->edge_length + 1, y + node->edge_length + 1);
+void compute_rprofile(AsciiTree node, int x, int y) 
+{
+  int i, notleft;
+  if (node == NULL) return;
+  notleft = (node->parent_dir != -1);
+  rprofile[y] = MAX(rprofile[y], x+((node->lablen-notleft)/2));
+  if (node->right != NULL) 
+  {
+	  for (i=1; i <= node->edge_length && y+i < MAX_HEIGHT; i++) 
+    {
+	    rprofile[y+i] = MAX(rprofile[y+i], x+i);
+    }
+  }
+  compute_rprofile(node->left, x-node->edge_length-1, y+node->edge_length+1);
+  compute_rprofile(node->right, x+node->edge_length+1, y+node->edge_length+1);
 }
 
 //This function fills in the edge_length and 
