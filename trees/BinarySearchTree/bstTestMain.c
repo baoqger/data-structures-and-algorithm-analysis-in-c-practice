@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include "ascii-tree.h"
 
 void generate_dot(BST);
 void delete_tree(BST);
@@ -75,9 +76,10 @@ verify_deleteLeafNode() {
     printf("Test: delete leaf node\n");
     ET test_array[] = {2, 1, 3};
     BST T = initializeBST(test_array, 3);
-    generate_dot(T);
+    print_ascii_tree(T);
     delete(1, T);
-    generate_dot(T);
+    printf("Delete node 1.\n");
+    print_ascii_tree(T);
     delete_tree(T);    
 }
 
@@ -87,7 +89,8 @@ test_initializeBST()
   printf("TEST: initializeBST\n");
   ET test_array[] = {2,1,3,4,5};
   BST T = initializeBST(test_array, 5);
-  generate_dot(T);
+  print_ascii_tree(T);
+  // generate_dot(T);
   delete_tree(T);
 }
 
@@ -132,7 +135,11 @@ test_insert()
   printf("TEST: insert\n");
   ET test_array[] = {3,1,4,6,9,2,5,7};
   BST T = initializeBST(test_array, 8);
-  generate_dot(T);
+  printf("Initial tree\n");
+  print_ascii_tree(T);
+  T = insert(10, T);
+  printf("After insertion.\n");
+  print_ascii_tree(T);
   delete_tree(T);  
 }
 
@@ -142,9 +149,11 @@ test_delete()
   printf("TEST: delete\n");
   ET test_array[] = {3,1,4,6,9,2,5,7};
   BST T = initializeBST(test_array, 8);
+  printf("Initial Tree.\n");
+  print_ascii_tree(T);
   printf("deleting the root: %d\n", 3);
   T = delete(3, T);
-  generate_dot(T);
+  print_ascii_tree(T);
   delete_tree(T);  
 }
 

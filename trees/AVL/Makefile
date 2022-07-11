@@ -6,10 +6,10 @@ ROOT = ../../
 
 SRC_FILES=\
   $(wildcard ./*.c) \
-  $(ROOT)utility/utility.c
+  $(ROOT)utility/utility.c \
 
 INC_DIRS=\
-  -I$(ROOT)utility/
+  -I$(ROOT)utility/ \
 
 LIBS=\
   -lm

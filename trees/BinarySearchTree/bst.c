@@ -127,6 +127,16 @@ retrieve(Position T)
   return 0;
 }
 
+BST 
+leftChild(BST T) {
+    return T->Left;
+}
+
+BST 
+rightChild(BST T) {
+    return T->Right;
+}
+
 BST
 initializeBST(ET* array, int arrayLength)
 {

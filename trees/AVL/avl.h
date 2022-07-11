@@ -31,6 +31,8 @@ AVL insert2(ET, AVL);
  */
 AVL delete(ET, AVL);
 ET retrieve(Position);
+AVL leftChild(AVL);
+AVL rightChild(AVL);
 
 /*
  * Create a AVL tree based upon the given array

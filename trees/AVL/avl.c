@@ -386,6 +386,16 @@ retrieve(Position T)
   return 0;
 }
 
+AVL 
+leftChild(AVL T) {
+    return T->Left;
+}
+
+AVL 
+rightChild(AVL T) {
+    return T->Right;
+}
+
 AVL
 initializeAVL(ET* array, int arrayLength)
 {

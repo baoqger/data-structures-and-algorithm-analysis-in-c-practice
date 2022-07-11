@@ -23,6 +23,9 @@ BST insert(ET, BST);
 BST delete(ET, BST);
 ET retrieve(Position);
 Position find_iterative(ET, BST);
+// added these interface for drawing tree
+BST leftChild(BST);
+BST rightChild(BST);
 /*
  * Create a BST based upon the given array
  */

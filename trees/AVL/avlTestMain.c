@@ -1,6 +1,7 @@
 #include "avl.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "ascii-tree.h"
 
 void generate_dot(AVL);
 void delete_tree(AVL);
@@ -23,9 +24,9 @@ main()
   /* test_find();              printf("\n"); */
   /* test_findMin();           printf("\n"); */
   /* test_findMax();          printf("\n"); */
-  test_insert2();
+  // test_insert2();
   test_delete();
-  test_minAVL();
+  // test_minAVL();
   return 0;
 }
 
@@ -52,7 +53,7 @@ test_initializeAVL()
   printf("TEST: initializeAVL\n");
   ET test_array[] = {2,1,4,5,9,3,6,7};
   AVL T = initializeAVL(test_array, 8);
-  generate_dot(T);
+  print_ascii_tree(T);
   delete_tree(T);
 }
 
@@ -117,9 +118,10 @@ test_delete()
    */
   ET test_array[] = {6,3,7,1};
   AVL T = initializeAVL(test_array, 4);
+  print_ascii_tree(T);
   printf("deleting the root: %d\n", 7);
   T = delete(7, T);
-  generate_dot(T);
+  print_ascii_tree(T);
   delete_tree(T);
 }
 
