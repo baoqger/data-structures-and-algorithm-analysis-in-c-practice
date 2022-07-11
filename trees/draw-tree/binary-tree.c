@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include "binary-tree.h"
 
-struct TreeNode {
-    Position left;
-    Position right;
-    ET element;
-};
 
 Tree make_empty(Tree t) {
     if (t != NULL) {
@@ -38,7 +33,7 @@ Position find_max(Tree t) {
 }
 
 Position find(ET elem, Tree t) {
-    if(Tree == NULL) {
+    if(t == NULL) {
         return NULL;
     } 
     if ( elem == t->element) {
@@ -64,24 +59,24 @@ Tree insert(ET value, Tree t)  {
     if (value < t->element) {
         t->left = insert(value, t->left);
     } else if (value > t->element) {
-        t-right = insert(value, t->right);
+        t->right = insert(value, t->right);
     }
     // when the value is duplicated, do nothing
     return t;
 }
 
-Tree delete(ET value, Tree t) {
+Tree deleteNode(ET value, Tree t) {
     Tree tmp;
     if(t == NULL) return NULL;
     if(value < t->element) {
-        t->left = delete(value, t->left);
+        t->left = deleteNode(value, t->left);
     } else if(value > t->element) {
-        t->right = delete(value, t->right);
+        t->right = deleteNode(value, t->right);
     } // node is found 
     else if(t->left && t->right) { // the node has both left and right child
        tmp = find_min(t->right);
        t->element = tmp->element;
-       t->right = delete(t->element, t-right);
+       t->right = deleteNode(t->element, t->right);
     } else { // the node has zero or one  child
         tmp = t;
         if(t->left == NULL) {
