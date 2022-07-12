@@ -57,6 +57,14 @@ findMinBST(BST T)
     return findMinBST(T->Left);
 }
 
+Position 
+findMinBST_iterative(BST T) {
+    while(T != NULL && T->Left != NULL) {
+        T = T->Left;
+    }
+    return T;
+}
+
 Position
 findMaxBST(BST T)
 {
@@ -65,7 +73,15 @@ findMaxBST(BST T)
       T = T->Right;
   return T;
 }
- 
+
+Position 
+findMaxBST_iterative(BST T) {
+    while(T != NULL && T->Right != NULL)  {
+        T = T->Right;
+    }
+    return T;
+}
+
 BST
 insert(ET elem, BST T)
 {

@@ -111,10 +111,12 @@ void
 test_findMinBST()
 {
   printf("TEST: findMinBST\n");
-  ET test_array[] = {2,1,3};
-  BST T = initializeBST(test_array, 3);
+  ET test_array[] = {2,1,3,5,0};
+  BST T = initializeBST(test_array, 5);
   Position pos = findMinBST(T);
   printf("The min element in the tree: %d\n", retrieve(pos));
+  Position pos2 = findMinBST_iterative(T);
+  printf("The min element in the tree(iterative): %d\n", retrieve(pos2));
   delete_tree(T);
 }  
 
@@ -126,6 +128,9 @@ test_findMaxBST()
   BST T = initializeBST(test_array, 3);
   Position pos = findMaxBST(T);
   printf("The max element in the tree: %d\n", retrieve(pos));
+  Position pos2 = findMaxBST_iterative(T);
+  printf("The max element in the tree(iterative): %d\n", retrieve(pos2));
+
   delete_tree(T);
 }  
   
