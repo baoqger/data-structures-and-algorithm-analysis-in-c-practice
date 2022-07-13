@@ -56,6 +56,8 @@ int numFullNodes2(BST);
  */
 BST randBST(int);
 
+BST genTrees(int, int*);
+
 /*
  * MAW 4.31 Write a function to generate a perfectly balanced binary search tree of height H with keys 1 through 2^{H+1}-1.
  */

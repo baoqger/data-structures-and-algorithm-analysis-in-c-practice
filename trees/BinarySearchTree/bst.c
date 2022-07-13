@@ -289,7 +289,7 @@ randBST(int N)
 
 // O(log N)
 // The other solution: https://cseweb.ucsd.edu/classes/su05/cse100/cse100hw1.pdf
-static BST
+BST
 genTrees(int H, int* LastNode)
 {
   BST T = NULL;

@@ -16,6 +16,7 @@ void test_numNodes();
 void test_numLeaves();
 void test_numFullNodes();
 void test_randBST();
+void test_genTrees();
 void test_perfectBST();
 void test_printRangeKeys();
 void test_levelOrder();
@@ -42,6 +43,7 @@ main()
   test_numLeaves();         printf("\n");
   test_numFullNodes();      printf("\n");
   test_randBST();           printf("\n");
+  test_genTrees();          printf("\n");
   test_perfectBST();        printf("\n");
   test_printRangeKeys();    printf("\n\n");
   test_levelOrder();        printf("\n\n");
@@ -202,9 +204,19 @@ void
 test_randBST()
 {
   printf("TEST: randBST\n");
-  BST T = randBST(10);
-  generate_dot(T);
+  BST T = randBST(20);
+  print_ascii_tree(T);
   delete_tree(T);
+}
+
+void test_genTrees() {
+    printf("Test: genTrees\n");
+    int b = 2;
+    int *a = NULL; 
+    a = &b;
+    BST T = genTrees(3, a);
+    print_ascii_tree(T);
+    delete_tree(T);
 }
 
 void
