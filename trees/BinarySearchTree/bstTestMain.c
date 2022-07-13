@@ -180,8 +180,9 @@ test_numLeaves()
   printf("TEST: numLeaves\n");
   ET test_array[] = {3,1,4,6,9,2,5,7};
   BST T = initializeBST(test_array, 8);
-  generate_dot(T);
+  print_ascii_tree(T);
   printf("num of leaves in the tree: %d\n", numLeaves(T));
+  printf("num of leaves in the tree(second solution): %d\n", numLeaves2(T));
   delete_tree(T);
 }
 
@@ -191,8 +192,9 @@ test_numFullNodes()
   printf("TEST: numFullNodes\n");
   ET test_array[] = {3,1,4,6,9,2,5,7};
   BST T = initializeBST(test_array, 8);
-  generate_dot(T);
+  print_ascii_tree(T);
   printf("num of full nodes in the tree: %d\n", numFullNodes(T));
+  printf("num of full nodes in the tree(second solution): %d\n", numFullNodes2(T));
   delete_tree(T);
 }
 

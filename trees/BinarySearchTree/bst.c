@@ -232,6 +232,17 @@ numLeaves(BST T)
   }
   return count;
 }
+int 
+numLeaves2(BST T) {
+    if (T == NULL) {
+        return 0;
+    }
+    if (T->Left == NULL && T->Right){
+        return 1;
+    } else {
+        return numLeaves2(T->Left) + numLeaves(T->Right);
+    }
+}
 
 // O(N)
 int
@@ -252,6 +263,20 @@ numFullNodes(BST T)
     count += numFullNodes(T->Left);
   return count;
 }
+
+int 
+numFullNodes2(BST T) {
+    if (T == NULL) {
+        return 0;
+    }
+    if (T->Left != NULL && T->Right != NULL) {
+        return 1 + numFullNodes2(T->Left) + numFullNodes2(T->Right);
+    } else {
+        return numFullNodes2(T->Left) + numFullNodes2(T->Right);
+    }
+}
+
+
 
 // O(N + NH) = O(NH), where H is the height of BST
 BST

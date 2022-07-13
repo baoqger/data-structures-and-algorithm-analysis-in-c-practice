@@ -48,8 +48,9 @@ void bst_print_dot(BST, FILE*);
 int numNodes(BST);
 int numNodes2(BST);
 int numLeaves(BST);
+int numLeaves2(BST);
 int numFullNodes(BST);
-
+int numFullNodes2(BST);
 /*
  * MAW 4.29 Write a function to generate an N-node random binary search tree with distinct keys 1 through N.
  */
