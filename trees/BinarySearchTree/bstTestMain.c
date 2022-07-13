@@ -168,7 +168,9 @@ test_numNodes()
   printf("TEST: numNodes\n");
   ET test_array[] = {3,1,4,6,9,2,5,7};
   BST T = initializeBST(test_array, 8);
+  print_ascii_tree(T);
   printf("num of nodes in the tree: %d\n", numNodes(T));
+  printf("num of nodes in the tree(solution 2): %d\n", numNodes2(T));
   delete_tree(T);
 }
 

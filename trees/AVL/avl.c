@@ -11,7 +11,7 @@ static int
 Height(Position P)
 {
   if (P == NULL)
-    return -1;
+    return -1; // null node's height is -1
   else
     return P->Height;
 }

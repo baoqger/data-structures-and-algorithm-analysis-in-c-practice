@@ -93,7 +93,7 @@ insert(ET elem, BST T)
   }
   else if (elem < T->Element)
   {
-    T->Left = insert(elem, T->Left);
+    T->Left = insert(elem, T->Left); // change the tree
   }
   else if (elem > T->Element)
   {
@@ -121,11 +121,10 @@ delete(ET elem, BST T)
       T->Element = tmpCell->Element;
       T->Right = delete(T->Element, T->Right);
   }
-  else // one or zero children
+  else // one or zero children, change the pointer T pointing to new address(NULl or the child node)
   {
     tmpCell = T;
-    // 对于leaf node，会运行下面这句, 将T置为NULL, 因为lleaf node的
-    // right child也是NULL
+    // for leaf node, T will be reset to null
     if (T->Right == NULL)
       T = T->Left;
     else if (T->Left == NULL)
@@ -193,7 +192,7 @@ bst_print_dot(BST T, FILE* stream)
 int
 numNodes(BST T)
 {
-  int count = 0;
+  int count = 0; // each call stack contains this local variable
   if (T == NULL)
     return 0;
   else
@@ -203,6 +202,18 @@ numNodes(BST T)
     count += 1;
   }
   return count;
+}
+
+// base case: leaf node num is 1 
+int numNodes2(BST T) {
+    if (T == NULL) {
+        return 0;
+    }
+    if (T->Left == NULL && T->Right  == NULL){
+        return 1;
+    } else {
+        return numNodes2(T->Left) + numNodes2(T->Right)  + 1;
+    }
 }
 
 // O(N)

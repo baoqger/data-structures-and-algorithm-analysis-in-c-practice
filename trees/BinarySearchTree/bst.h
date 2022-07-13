@@ -46,6 +46,7 @@ void bst_print_dot(BST, FILE*);
  * c. The number of full nodes in T.
  */
 int numNodes(BST);
+int numNodes2(BST);
 int numLeaves(BST);
 int numFullNodes(BST);
 
