@@ -223,8 +223,8 @@ void
 test_perfectBST()
 {
   printf("TEST: perfectBST\n");
-  BST T = perfectBST(2);
-  generate_dot(T);
+  BST T = perfectBST(3);
+  print_ascii_tree(T);
   delete_tree(T);
 }
 
@@ -246,7 +246,8 @@ test_levelOrder()
 {
   printf("TEST: levelOrder\n");
   BST T = perfectBST(2);
-  generate_dot(T);
+  print_ascii_tree(T);
+  printf("print node in level order\n");
   levelOrder(T);
   delete_tree(T);
 }
@@ -255,15 +256,27 @@ void
 test_similar()
 {
   printf("TEST: similar\n");
-  BST T_similar1 = perfectBST(2);
-  BST T_similar2 = perfectBST(2);
-  BST T_diff1 = perfectBST(3);
-  assert(similar(T_similar1, T_similar2) == 0);
-  assert(similar(T_similar1, T_diff1) != 0);
+  // BST T_similar1 = perfectBST(2);
+  // BST T_similar2 = perfectBST(2);
+  // BST T_diff1 = perfectBST(3);
+  ET arr1[] = {2, 1 ,3};
+  ET arr2[] = {2 ,3, 1};
+  ET arr3[] = {1, 2, 3};
+  BST T1 = initializeBST(arr1, 3);
+  BST T2 = initializeBST(arr2, 3);
+  BST T3 = initializeBST(arr3, 3);
+  printf("T1\n");
+  print_ascii_tree(T1);
+  printf("T2\n");
+  print_ascii_tree(T2);
+  printf("T3\n");
+  print_ascii_tree(T3);
+  assert(similar(T1, T2) == 1);
+  assert(similar(T1, T3) == 0);
   printf("All pass");
-  delete_tree(T_similar1);
-  delete_tree(T_similar2);
-  delete_tree(T_diff1);
+  delete_tree(T1);
+  delete_tree(T2);
+  delete_tree(T3);
 }
 
 void

@@ -440,9 +440,9 @@ levelOrder(BST T)
   }
   disposeQueue(Q);
 }
-
+// the following implementation has bugs
 int
-similar(BST T1, BST T2)
+similar_retire(BST T1, BST T2)
 {
   if (T1 == NULL && T2 == NULL)
     return 0;
@@ -450,6 +450,19 @@ similar(BST T1, BST T2)
     return 1;
   return (similar(T1->Left, T2->Left) && similar(T1->Right, T2->Right));
 }
+
+// 1 means two trees are similar; 0 is the opposite
+int 
+similar(BST T1, BST T2) 
+{
+    if(T1 != NULL && T2 != NULL) {
+        return similar(T1->Left, T2->Left) && similar(T1->Right, T2->Right);
+    } else if(T1 == NULL && T2 == NULL) {
+        return 1;
+    } else {
+        return 0;
+    }
+}    
 
 // Determine if the given two trees are identical
 int
