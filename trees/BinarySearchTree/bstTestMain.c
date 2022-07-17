@@ -25,6 +25,7 @@ void test_same();
 void test_inorderTraversal();
 void test_diameterOfBST();
 void verify_deleteLeafNode();
+void test_heightOfBST();
 int
 main()
 {
@@ -51,7 +52,7 @@ main()
   test_same();              printf("\n\n");
   test_inorderTraversal();  printf("\n\n");
   test_diameterOfBST();     printf("\n\n");
-  
+  test_heightOfBST();       printf("\n\n");
   return 0;
 }
 
@@ -296,8 +297,10 @@ void
 test_inorderTraversal()
 {
   printf("TEST: inorderTraversal\n");
-  ET test_array[] = {3,1,4};
-  BST T = initializeBST(test_array, 3);
+  ET test_array[] = {3,1,4,2,5};
+  BST T = initializeBST(test_array, 5);
+  print_ascii_tree(T);
+  printf("inorder traversal: \n");
   int arrayLength;
   ET* array = inorderTraversal(T, &arrayLength);
   printArray(array, arrayLength);
@@ -310,4 +313,19 @@ test_diameterOfBST()
   ET test_array[] = {3,1,4};
   BST T = initializeBST(test_array, 3);
   printf("max diameter: %d\n", diameterOfBST(T));
+}
+
+void test_heightOfBST() {
+    printf("TEST: heightOfBST\n");
+    ET test_array[] = {3, 1, 4, 2, 5};
+    BST T1 = initializeBST(test_array, 5);
+    print_ascii_tree(T1);
+    printf("Height of this tree is : %d\n", heightOfBST(T1));
+
+    ET test_array2[] = {1, 2, 3, 4, 5};
+    BST T2 = initializeBST(test_array2, 5);
+    print_ascii_tree(T2);
+    printf("Height of this tree is : %d\n", heightOfBST(T2));
+    delete_tree(T1);
+    delete_tree(T2);
 }

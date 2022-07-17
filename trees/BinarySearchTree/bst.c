@@ -486,13 +486,26 @@ transform(BST T1, BST T2)
   return T1;
 }
 
+int 
+heightOfBST(BST T) {
+    if(T == NULL) {
+        return -1;
+    } else if (T->Left == NULL && T->Right == NULL) {
+        return 0;
+    } else {
+        return 1 + max(heightOfBST(T->Left), heightOfBST(T->Right));
+    }
+}
+
+
+// enhance and no need to use reference pointer
 static void
-inorderTraversalHelper(BST root, int** array, int *i)
+inorderTraversalHelper(BST root, int* array, int *i)
 {
   if (root != NULL)
   {
     inorderTraversalHelper(root->Left, array, i);
-    *(*array+(*i)++) = root->Element;
+    *(array+(*i)++) = root->Element;
     inorderTraversalHelper(root->Right, array, i);
   }
 }
@@ -504,7 +517,7 @@ inorderTraversal(BST root,
   *returnSize = numNodes(root);
   int *array = malloc(*returnSize * sizeof(int));
   int i = 0;
-  inorderTraversalHelper(root, &array, &i);
+  inorderTraversalHelper(root, array, &i);
   return array;
 }
 

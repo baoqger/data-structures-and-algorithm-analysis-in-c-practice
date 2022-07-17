@@ -110,6 +110,10 @@ int* inorderTraversal(BST root, int* returnSize);
  */
 int diameterOfBST(BST root);
 
+
+// Given a binary tree, find the height of it
+int heightOfBST(BST);
+
 #endif
 
 
