@@ -27,7 +27,7 @@ makeEmpty(AVL T)
   }
   return NULL;
 }
-  
+// same as general binary tree's find method  
 Position
 find(ET elem, AVL T)
 {
@@ -87,6 +87,11 @@ doubleRotateWithLeft2(Position K3)
  * This function can be called only if K2 has a left child
  * Peform a rotate between a node (K2) and its left child
  * Update heights, then return new root
+     k2          k1
+    /           / \
+   k1           b  k2
+  / \             / 
+  b a             a
  */
 static AVL
 singleRotateWithLeft(Position K2)
@@ -95,7 +100,7 @@ singleRotateWithLeft(Position K2)
   K1 = K2->Left;
   K2->Left = K1->Right;  
   K1->Right = K2;
-
+  // exchange the order?
   K1->Height = max(Height(K1->Left), Height(K1->Right)) + 1;
   K2->Height = max(Height(K2->Right), Height(K2->Right)) + 1;
   
@@ -162,13 +167,15 @@ insert(ET elem, AVL T)
     if (Height(T->Left) - Height(T->Right) == 2)
     {
       if(elem < T->Left->Element)
-      {
-        T = singleRotateWithLeft(T);
+      { 
+        // right rotation
+        T = singleRotateWithLeft(T); 
       }
       else
-      {
+      { 
+        // left-right rotation  
         T = doubleRotateWithLeft2(T);  //Use MAW 4.22 version
-//        T = doubleRotateWithLeft(T);         
+        // T = doubleRotateWithLeft(T);         
       }
     }
   }
@@ -179,10 +186,12 @@ insert(ET elem, AVL T)
     {
       if (elem > T->Right->Element)
       {
-        T = singleRotateWithRight(T);
+        // left rotation  
+        T = singleRotateWithRight(T); 
       }
       else
       {
+        // right-left rotation
         T = doubleRotateWithRight(T);
       }
     }
@@ -363,7 +372,7 @@ delete(ET elem, AVL T)
   if (Height(T->Left) - Height(T->Right) == 2)
   {
     if (Height(T->Left->Left) - Height(T->Left->Right) >= 0) 
-      T = singleRotateWithLeft(T); //Left Left case
+      T = singleRotateWithLeft(T); //right case
     else
       T = doubleRotateWithLeft(T); //Left Right case
   }
