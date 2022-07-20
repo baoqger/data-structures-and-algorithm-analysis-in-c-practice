@@ -6,9 +6,9 @@
 void generate_dot(AVL);
 void delete_tree(AVL);
 void test_initializeAVL();
-/* void test_find(); */
-/* void test_findMin(); */
-/* void test_findMax(); */
+void test_find();
+void test_findMin();
+void test_findMax(); 
 void test_insert2();
 void test_delete();
 void test_minAVL();
@@ -21,12 +21,12 @@ main()
   printf("///////////////////////\n\n");
   
   test_initializeAVL();
-  /* test_find();              printf("\n"); */
-  /* test_findMin();           printf("\n"); */
-  /* test_findMax();          printf("\n"); */
-  // test_insert2();
+  test_find();              printf("\n"); 
+  test_findMin();           printf("\n"); 
+  test_findMax();          printf("\n"); 
+  test_insert2();
   test_delete();
-  // test_minAVL(); 
+  test_minAVL(); 
   return 0;
 }
 
@@ -57,40 +57,40 @@ test_initializeAVL()
   delete_tree(T);
 }
 
-/* void */
-/* test_find() */
-/* { */
-/*   printf("TEST: find\n"); */
-/*   ET test_array[] = {2,1,3}; */
-/*   BST T = initializeBST(test_array, 3); */
-/*   int target = 1; */
-/*   printf("want to find the element: %d\n", target); */
-/*   Position pos = find(target, T); */
-/*   printf("Found the element: %d\n", retrieve(pos)); */
-/*   delete_tree(T); */
-/* } */
+void 
+test_find() 
+{ 
+   printf("TEST: find\n"); 
+   ET test_array[] = {2,1,3}; 
+   AVL T = initializeAVL(test_array, 3); 
+   int target = 1; 
+   printf("want to find the element: %d\n", target); 
+   Position pos = find(target, T); 
+   printf("Found the element: %d\n", retrieve(pos)); 
+   delete_tree(T); 
+ } 
 
-/* void */
-/* test_findMin() */
-/* { */
-/*   printf("TEST: findMin\n"); */
-/*   ET test_array[] = {2,1,3}; */
-/*   BST T = initializeBST(test_array, 3); */
-/*   Position pos = findMin(T); */
-/*   printf("The min element in the tree: %d\n", retrieve(pos)); */
-/*   delete_tree(T); */
-/* }   */
+ void 
+ test_findMin() 
+ { 
+   printf("TEST: findMin\n"); 
+   ET test_array[] = {2,1,3}; 
+   AVL T = initializeAVL(test_array, 3); 
+   Position pos = findMinAVLTree(T); 
+   printf("The min element in the tree: %d\n", retrieve(pos)); 
+   delete_tree(T); 
+ }   
 
-/* void */
-/* test_findMax() */
-/* { */
-/*   printf("TEST: findMax\n"); */
-/*   ET test_array[] = {2,1,3}; */
-/*   BST T = initializeBST(test_array, 3); */
-/*   Position pos = findMax(T); */
-/*   printf("The max element in the tree: %d\n", retrieve(pos)); */
-/*   delete_tree(T); */
-/* }   */
+ void 
+ test_findMax() 
+ { 
+   printf("TEST: findMax\n"); 
+   ET test_array[] = {2,1,3}; 
+   AVL T = initializeAVL(test_array, 3); 
+   Position pos = findMaxAVLTree(T); 
+   printf("The max element in the tree: %d\n", retrieve(pos)); 
+   delete_tree(T); 
+ }   
   
 void
 test_insert2()
@@ -101,7 +101,7 @@ test_insert2()
   int i;
   for(i = 0; i < 8; i++)
     T = insert2(test_array[i], T);
-  generate_dot(T);
+  print_ascii_tree(T);
   delete_tree(T);
 }
 
