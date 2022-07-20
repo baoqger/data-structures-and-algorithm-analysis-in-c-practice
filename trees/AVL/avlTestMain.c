@@ -26,7 +26,7 @@ main()
   /* test_findMax();          printf("\n"); */
   // test_insert2();
   test_delete();
-  // test_minAVL();
+  // test_minAVL(); 
   return 0;
 }
 
@@ -51,8 +51,8 @@ void
 test_initializeAVL()
 {
   printf("TEST: initializeAVL\n");
-  ET test_array[] = {2,1,4,5,9,3,6,7};
-  AVL T = initializeAVL(test_array, 8);
+  ET test_array[] = {3, 1, 2};
+  AVL T = initializeAVL(test_array, 3);
   print_ascii_tree(T);
   delete_tree(T);
 }
@@ -133,3 +133,11 @@ test_minAVL()
   generate_dot(T);
   delete_tree(T);
 }
+
+
+
+
+
+
+
+

@@ -10,7 +10,7 @@ typedef int ET;
 struct AVLTreeNode;
 typedef struct AVLTreeNode *Position;
 typedef Position AVL;
-
+AVL makeNode(ET);
 AVL makeEmpty(AVL);
 Position find(ET, AVL);
 Position findMinAVLTree(AVL);
@@ -48,5 +48,6 @@ void bst_print_dot(AVL, FILE*);
  * MAW 4.30 Write a function to generate the AVL tree of height H with fewest nodes. 
  */
 AVL minAVL(int H);
+
 
 #endif

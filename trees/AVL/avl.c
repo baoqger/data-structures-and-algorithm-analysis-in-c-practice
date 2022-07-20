@@ -108,19 +108,6 @@ singleRotateWithLeft(Position K2)
 }
 
 /*
- * This function can be called only if K3 has a left
- * child and K3's left child has a right child
- * Do the left-right double rotation
- * Update heights, then return new root
- */
-static AVL
-doubleRotateWithLeft(Position K3)
-{
-  K3->Left = singleRotateWithLeft(K3->Left); // Rotate between K1 and K2
-  return singleRotateWithLeft(K3); // Rotate between K3 and K2
-}
-
-/*
  * This function can be called only if K1 has a right child
  * Peform a rotate between a node (K1) and its right child
  * Update heights, then return new root
@@ -137,6 +124,20 @@ singleRotateWithRight(Position K2)
   K1->Height = max(Height(K1->Left), Height(K1->Right)) + 1;
   return K1;
 }
+
+/*
+ * This function can be called only if K3 has a left
+ * child and K3's left child has a right child
+ * Do the left-right double rotation (left rotation fllowed by right rotation)
+ * Update heights, then return new root
+ */
+static AVL
+doubleRotateWithLeft(Position K3)
+{
+  K3->Left = singleRotateWithRight(K3->Left); // Rotate between K1 and K2
+  return singleRotateWithLeft(K3); // Rotate between K3 and K2
+}
+
 
 /*
  * This function can be called only if K3 has a right
@@ -174,8 +175,8 @@ insert(ET elem, AVL T)
       else
       { 
         // left-right rotation  
-        T = doubleRotateWithLeft2(T);  //Use MAW 4.22 version
-        // T = doubleRotateWithLeft(T);         
+        // T = doubleRotateWithLeft2(T);  //Use MAW 4.22 version
+        T = doubleRotateWithLeft(T);         
       }
     }
   }
@@ -201,7 +202,7 @@ insert(ET elem, AVL T)
   return T;
 }
 
-static Position
+Position
 makeNode(ET elem)
 {
   Position T = malloc(sizeof(struct AVLTreeNode));
