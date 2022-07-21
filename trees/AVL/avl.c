@@ -75,7 +75,7 @@ doubleRotateWithLeft2(Position K3)
   K3->Left = K2->Right;
   K2->Left = K1;
   K2->Right = K3;
-
+  // update child height then update parent height
   K1->Height = max(Height(K1->Left), Height(K1->Right)) + 1;
   K3->Height = max(Height(K3->Left), Height(K3->Right)) + 1;
   K2->Height = max(Height(K2->Left), Height(K2->Right)) + 1;
@@ -217,7 +217,9 @@ makeNode(ET elem)
  * 2,1,4,5,9,3,6,7
  * and follow the illustration: https://cseweb.ucsd.edu/classes/su05/cse100/cse100hw1.pdf p.5
  * a copy is also included in this repo
- */ 
+ */
+// this solution doesn't rely on recursion. It explicitly define a stack to store the intermediate result. 
+// This explicit stack is just like the recursive call stack
 AVL
 insert2(ET elem, AVL T)
 {
