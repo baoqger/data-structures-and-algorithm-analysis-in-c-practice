@@ -13,6 +13,8 @@ SimpleSet createSimpleSet(int);
 int isFull(SimpleSet);
 void add(ET, SimpleSet);
 int find(ET, SimpleSet);
-void remove(ET, SimpleSet);
+void removeElement(ET, SimpleSet);
+void printSimpleSet(SimpleSet);
+void disposeSimpleSet(SimpleSet);
 #endif 
 

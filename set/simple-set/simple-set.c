@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "simple-set.h"
 
@@ -54,7 +55,7 @@ int find(ET elem, SimpleSet s) {
 /*
  * remove the target element from the SimpleSet
  * */
-void remove(ET elem, SimpleSet s) {
+void removeElement(ET elem, SimpleSet s) {
    int index;
    index = find(elem, s); 
    if (index == -1) { // if the element doesn't exist
@@ -67,6 +68,19 @@ void remove(ET elem, SimpleSet s) {
    }
 }
 
+void printSimpleSet(SimpleSet s) {
+    for(int i = 0; i <= s->Size; i++) {
+        printf("%s ", s->Array[i]);
+    }
+    printf("\n");
+}
+
+void disposeSimpleSet(SimpleSet s) {
+    if (s != NULL) {
+        free(s->Array);
+        free(s);
+    }
+}
 
 static void resizeSimpleSetArray(ET **array, int length) {
     *array = realloc(*array, sizeof(ET)*length);
