@@ -11,5 +11,8 @@ typedef struct SetRecord *SimpleSet;
 
 SimpleSet createSimpleSet(int);
 int isFull(SimpleSet);
+void add(ET, SimpleSet);
+int find(ET, SimpleSet);
+void remove(ET, SimpleSet);
 #endif 
 
