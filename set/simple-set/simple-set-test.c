@@ -74,12 +74,14 @@ void test_resize() {
 
 void test_removeElement() {
     printf("Test remove element.\n");
-    SimpleSet s = createSimpleSet(10);
+    SimpleSet s = NULL; 
+    NewSimpleSet(&s);
     add("172.10.0.1",s);
     add("172.10.0.2",s);
     add("172.10.0.3",s);
     printSimpleSet(s);
     char *ip1 = "172.10.0.1";
+    printf("remove %s\n",ip1);
     removeElement(ip1, s);
     printSimpleSet(s);
     disposeSimpleSet(s);

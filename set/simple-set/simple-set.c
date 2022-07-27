@@ -4,6 +4,7 @@
 #include "simple-set.h"
 
 #define EmptyToS (-1)
+#define MinimumLength (10)
 static void resizeSimpleSet(SimpleSet);
 
 struct SetRecord {
@@ -11,6 +12,12 @@ struct SetRecord {
     int Size;     // the current number of elements in the Set
     ET *Array;
 };
+
+void NewSimpleSet(SimpleSet *s) {
+    if (*s == NULL) {
+        *s = createSimpleSet(MinimumLength);
+    }
+}
 
 /* Create a SimpleSet */
 SimpleSet createSimpleSet(int maxElements) {

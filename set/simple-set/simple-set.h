@@ -9,6 +9,7 @@ typedef char ET[20];
 struct SetRecord;
 typedef struct SetRecord *SimpleSet;
 
+void NewSimpleSet(SimpleSet *s);
 SimpleSet createSimpleSet(int);
 int isFull(SimpleSet);
 void add(ET, SimpleSet);
