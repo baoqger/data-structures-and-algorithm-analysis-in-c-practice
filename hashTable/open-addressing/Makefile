@@ -21,17 +21,17 @@ OUTPUT_FILE=main
 
 # Linear Hashing
 linear:
-	$(C_COMPILER) $(CFLAGS) -DLINEARH $(INC_DIRS) $(LIBS) $(SRC_FILES) -o $(OUTPUT_FILE)
+	$(C_COMPILER) $(SRC_FILES) -o $(OUTPUT_FILE) $(CFLAGS) -DLINEARH $(INC_DIRS) $(LIBS) 
 	./$(OUTPUT_FILE) -v
 
 # Quadratic Hashing
 quad:
-	$(C_COMPILER) $(CFLAGS) -DQUADH $(INC_DIRS) $(LIBS) $(SRC_FILES) -o $(OUTPUT_FILE)
+	$(C_COMPILER) $(SRC_FILES) -o $(OUTPUT_FILE) $(CFLAGS) -DQUADH $(INC_DIRS) $(LIBS) 
 	./$(OUTPUT_FILE) -v
 
 # Double Hashing
 double:
-	$(C_COMPILER) $(CFLAGS) -DDH $(INC_DIRS) $(LIBS) $(SRC_FILES) -o $(OUTPUT_FILE)
+	$(C_COMPILER) $(SRC_FILES) -o $(OUTPUT_FILE) $(CFLAGS) -DDH $(INC_DIRS) $(LIBS) 
 	./$(OUTPUT_FILE) -v
 
 clean:
