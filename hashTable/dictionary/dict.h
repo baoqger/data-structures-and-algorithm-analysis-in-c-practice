@@ -32,4 +32,6 @@ HashTable put(int key, int value, HashTable H);
 int retrieve(int key, HashTable H);
 void printDictionary(HashTable H);
 
+int keyExist(int key, HashTable H);
+
 #endif

@@ -1,6 +1,7 @@
 #include "dict.h"
 
 void test_dictionary();
+void test_keyExist();
 
 int
 main(void)
@@ -10,6 +11,7 @@ main(void)
   printf("///////////////////////\n");  
 
   test_dictionary();
+  test_keyExist();
   return 0;
 }
 
@@ -27,3 +29,16 @@ test_dictionary()
   DestroyTable(H);
 }
 
+
+void 
+test_keyExist() {
+    printf("TEST: dictionary keyExist.\n");
+
+    HashTable H = initializeTable(10);
+    H = put(1, 2, H);
+    H = put(5, 23, H);
+    printDictionary(H);
+    printf("Key：%d %s\n", 1, keyExist(1, H) ? "exist" : "doesn't exist");
+    printf("Key：%d %s\n", 2, keyExist(2, H) ? "exist" : "doesn't exist");
+
+}

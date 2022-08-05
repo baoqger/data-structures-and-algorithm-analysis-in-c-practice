@@ -28,7 +28,7 @@ initializeTable(int TableSize)
   assert(H->TheCells);
 
   for(i = 0; i < H->TableSize; i++)
-    H->TheCells[i].Info = Empty;
+    H->TheCells[i].Info = Empty; // Cell is not a pointer so use "." instead of “->”
 
   return H;
 }
@@ -39,7 +39,7 @@ DestroyTable(HashTable H)
   free(H->TheCells);
   free(H);
 }
-
+// This hash function is over simple
 static Position
 hash(int key,
      int TableSize)
@@ -60,6 +60,8 @@ isTried(Position currentPos, HashTable T)
     return 0;
 }
 
+
+// This find can't be used as the external "find" API
 Position
 find(int key,
      HashTable H)
@@ -73,8 +75,10 @@ find(int key,
   // We use another hash table to prevent the infinite loop
   // when certain key cannot be inserted into the target hash table.
   HashTable T = initializeTable(H->TableSize); 
+  
   currentPos = hash(key, H->TableSize);
-
+  // collision resolution
+  // collition happens when cell at the index is not empty and the key doesn't match
   while(H->TheCells[currentPos].Info != Empty &&
         H->TheCells[currentPos].Element != key)
   {
@@ -86,7 +90,7 @@ find(int key,
     currentPos += 7 - hash(key, 7); // double hashing    
 #endif    
     if(currentPos >= H->TableSize)
-      currentPos -= H->TableSize;
+      currentPos -= H->TableSize; // use mod?
     if(isTried(currentPos, T))
     {
       printf("%d cannot be inserted into the table\n", key);

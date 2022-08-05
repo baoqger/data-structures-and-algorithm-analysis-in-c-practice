@@ -126,6 +126,14 @@ retrieve(int key,
   return H->TheCells[pos].Element.Value;
 }
 
+// judge whether the cell corresponse to the key is empty or not
+// return 1 if it's empty; return 0 if it's set with value
+int 
+keyExist(int key, HashTable H) {
+   Position pos = find(key, H);
+   return H->TheCells[pos].Info == Empty;
+}
+
 static HashTable
 rehash(HashTable H)
 {
