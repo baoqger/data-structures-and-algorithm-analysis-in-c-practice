@@ -66,16 +66,16 @@ hash(char *key,
 
 /* indicates whehter the currentPos is already tried before or not 
  */
-// static int
-// isTried(Position currentPos, HashTable T)
-// {
-  // Position tmp = find(currentPos, T);
-  // if (T->TheCells[tmp].Element.Key == currentPos &&
-      // T->TheCells[tmp].Info == Legitimate)
-    // return 1;
-  // else
-    // return 0;
-// }
+static int
+isTried(char *currentPos, HashTable T)
+{
+  Position tmp = find(currentPos, T);
+  if (strcmp(T->TheCells[tmp].Element.Key, currentPos) == 0 &&
+      T->TheCells[tmp].Info == Legitimate)
+    return 1;
+  else
+    return 0;
+}
 
 static Position
 find(char *key,
@@ -87,7 +87,8 @@ find(char *key,
 
   // We use another hash table to prevent the infinite loop
   // when certain key cannot be inserted into the target hash table.
-  // HashTable T = initializeTable(H->TableSize); 
+  HashTable T = initializeTable(H->TableSize); 
+  
   currentPos = hash(key, H->TableSize);
 
   while(H->TheCells[currentPos].Info != Empty &&
@@ -96,12 +97,15 @@ find(char *key,
     currentPos += 2 * ++collisionNum - 1; // quadratic hashing
     if(currentPos >= H->TableSize)
       currentPos -= H->TableSize;
-    // if(isTried(currentPos, T))
-    // {
-      // printf("%d cannot be inserted into the table\n", key);
-      // break;
-    // }
-    // T = put(currentPos, 0, T); // we don't really care what the corresponding value is
+    
+    char pos[20];
+    sprintf(pos, "%d", currentPos);
+    if(isTried(pos, T))
+    {
+      printf("%s cannot be inserted into the table\n", key);
+      break;
+    }
+    T = put(pos, 777, T); // we don't really care what the corresponding value is
   }
   return currentPos;
 }
@@ -118,7 +122,7 @@ put(char *key,
   H->TheCells[currentPos].Element.Value = value;
   H->TheCells[currentPos].Info = Legitimate;
   H->numElements++;
-  if(0.1 * H->numElements / H->TableSize >= 0.5) // avoid integer division
+  if((float)H->numElements /(float)H->TableSize >= 0.5) // avoid integer division
     H = rehash(H);
   return H;
 }
@@ -145,8 +149,10 @@ rehash(HashTable H)
   HashTable newH = initializeTable(nearestPrime(2*H->TableSize));
   int i;
   for(i = 0; i < H->TableSize; i++)
-  {
-    put(H->TheCells[i].Element.Key, H->TheCells[i].Element.Value, newH);
+  { 
+      if(H->TheCells[i].Info != Empty ) { // only copy the cell which is not empty
+        put(H->TheCells[i].Element.Key, H->TheCells[i].Element.Value, newH);
+      }                  
   }
   DestroyTable(H);
   return newH;
