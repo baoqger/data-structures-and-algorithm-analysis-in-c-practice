@@ -105,7 +105,7 @@ find(char *key,
       printf("%s cannot be inserted into the table\n", key);
       break;
     }
-    T = put(pos, 777, T); // we don't really care what the corresponding value is
+    T = put(pos, 0 , T); // we don't really care what the corresponding value is
   }
   return currentPos;
 }
