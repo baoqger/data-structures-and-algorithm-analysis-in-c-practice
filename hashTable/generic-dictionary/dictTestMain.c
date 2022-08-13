@@ -1,6 +1,7 @@
 #include "dict.h"
 
-void test_dictionary(); 
+void test_dictionary_value_int(); 
+void test_dictionary_value_str();
 void test_keyExist();
 char* print_value_int(void*);
 char* print_value_str(void*);
@@ -13,15 +14,16 @@ main(void)
   printf("// DICTIONARY \n");
   printf("///////////////////////\n");  
 
-  test_dictionary();
+  test_dictionary_value_int();
+  test_dictionary_value_str();
   // test_keyExist();
   return 0;
 }
 
 void
-test_dictionary()
+test_dictionary_value_int()
 {
-  printf("TEST: dictionary put and rehash\n");
+  printf("TEST: generic  dictionary put and rehash for int value\n");
   HashTable H = initializeTable(4);
   printDictionary(H, print_value_int);
   printf("\n");
@@ -43,6 +45,30 @@ test_dictionary()
   printDictionary(H, print_value_int);
   DestroyTable(H);
 }
+
+void
+test_dictionary_value_str()
+{
+  printf("TEST: generic dictionary put and rehash for string type value\n");
+  HashTable H = initializeTable(4);
+  printDictionary(H, print_value_str);
+  printf("\n");
+  printf("put chris: abc into the dictionary.\n");
+  H = put("chris",(void*)"abc", H);
+  printDictionary(H, print_value_str);
+  printf("\n");
+
+  printf("put bao: def into the dictionary.\n");
+  H = put("bao",(void*)"def",H);
+  printDictionary(H, print_value_str);
+  printf("\n");
+
+  printf("put paule: hij into the dictionary.\n");
+  H = put("paule",(void*)"hij",H);
+  printDictionary(H, print_value_str);
+  DestroyTable(H);
+}
+
 
 
 void 
@@ -66,7 +92,10 @@ print_value_int(void* v) {
     return s;
 }
 
-
+char* 
+print_value_str(void* v) {
+    return (char*)v;
+}
 
 
 
