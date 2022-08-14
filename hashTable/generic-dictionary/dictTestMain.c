@@ -97,6 +97,12 @@ test_dictionary_value_person()
   struct person *p3 = initializePerson("roro", 18);
   H = put("3344ok",(void*)p3, H);
   printDictionary(H, print_value_person);
+  
+  printf("increase roro's age by 1\n");
+  struct person *roro = retrieve("3344ok", H);
+  roro->age += 1;
+  printDictionary(H, print_value_person);
+
   DestroyTable(H);
 }
 
