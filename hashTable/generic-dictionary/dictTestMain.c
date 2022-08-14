@@ -1,11 +1,15 @@
+#include <string.h>
 #include "dict.h"
+#include "person.h"
 
 void test_dictionary_value_int(); 
 void test_dictionary_value_str();
+void test_dictionary_value_person();
+struct person* initializePerson(char*, int);
 void test_keyExist();
 char* print_value_int(void*);
 char* print_value_str(void*);
-
+char* print_value_person(void*);
 
 int
 main(void)
@@ -16,6 +20,7 @@ main(void)
 
   test_dictionary_value_int();
   test_dictionary_value_str();
+  test_dictionary_value_person();
   // test_keyExist();
   return 0;
 }
@@ -69,6 +74,32 @@ test_dictionary_value_str()
   DestroyTable(H);
 }
 
+void
+test_dictionary_value_person()
+{
+  printf("TEST: generic dictionary put and rehash for struct person type value\n");
+  HashTable H = initializeTable(4);
+  printDictionary(H, print_value_person);
+  printf("\n");
+  printf("put 1a34bc: {chris, 36} into the dictionary.\n\n");
+  struct person *p1 = initializePerson("chris", 36);
+  H = put("1a34bc",(void*)p1, H);
+  printDictionary(H, print_value_person);
+  printf("\n");
+
+  printf("put 2233ab: {paule: 30} into the dictionary.\n\n");
+  struct person *p2 = initializePerson("paule", 30);
+  H = put("2233ab",(void*)p2, H);
+  printDictionary(H, print_value_person);
+  printf("\n");
+
+  printf("put 3344ok: {roro: 18} into the dictionary.\n\n");
+  struct person *p3 = initializePerson("roro", 18);
+  H = put("3344ok",(void*)p3, H);
+  printDictionary(H, print_value_person);
+  DestroyTable(H);
+}
+
 
 
 void 
@@ -96,6 +127,28 @@ char*
 print_value_str(void* v) {
     return (char*)v;
 }
+
+char*
+print_value_person(void* v) {
+    char *s = NULL;
+    s = malloc(sizeof(char) * 20);
+    sprintf(s, "{name: %s, age: %d}", ((struct person*)v)->name, ((struct person*)v)->age);
+    return s;
+}
+
+struct person*
+initializePerson(char* name, int age) {
+    struct person *p = malloc(sizeof(struct person));
+    // p->name = malloc(sizeof(char) * 20);
+    strcpy(p->name, name);
+    p->age = age;
+    return p;
+}
+
+
+
+
+
 
 
 
