@@ -27,11 +27,14 @@ void DestroyTable(HashTable H);
  *       to the given one.
  */
 HashTable put(char *key, void* value, HashTable H);
+HashTable removeKey(char *key, HashTable H);
 /* We retrieve the corresponding value from the given key
  */
 void* retrieve(char *key, HashTable H);
 void printDictionary(HashTable H, char* (*printvalue)(void*));
+Position hash(char *key, int TableSize);
+Position simpleHash(char *key,int TableSize);
 
 int keyExist(char *key, HashTable H);
-
+int keyDeleted(char *key, HashTable H);
 #endif
