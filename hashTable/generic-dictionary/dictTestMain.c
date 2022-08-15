@@ -21,7 +21,7 @@ main(void)
   test_dictionary_value_int();
   test_dictionary_value_str();
   test_dictionary_value_person();
-  // test_keyExist();
+  test_keyExist();
   return 0;
 }
 
@@ -111,14 +111,26 @@ test_dictionary_value_person()
 void 
 test_keyExist() {
     printf("TEST: dictionary keyExist.\n");
-
     HashTable H = initializeTable(4);
-    H = put("abc", (void*)2, H);
-    H = put("def", (void*)23, H);
-    keyExist("abc", H);
-    printDictionary(H, print_value_int);
-    printf("Key：%s %s\n", "abc", keyExist("abc", H) ? "exist" : "doesn't exist");
-    printf("Key：%s %s\n", "chris", keyExist("chris", H) ? "exist" : "doesn't exist");
+    printDictionary(H, print_value_person);
+    printf("\n");
+    // if the target key does not exist, add the object
+    // else update the object
+    if (!keyExist("3344ok", H)) {
+        printf("key 33440k doesn't exist. Add it.\n\n");
+        struct person *roro = initializePerson("roro", 17);
+        H = put("3344ok", (void*)roro, H);
+        printDictionary(H, print_value_person);
+    }
+    if (keyExist("3344ok", H)) {
+        printf("key 33440k exist. Update it\n\n");
+        struct person *roro = retrieve("3344ok", H);
+        roro->age += 1;
+        printDictionary(H, print_value_person);
+    }
+
+    DestroyTable(H);
+
 }
 
 char* 
@@ -150,11 +162,5 @@ initializePerson(char* name, int age) {
     p->age = age;
     return p;
 }
-
-
-
-
-
-
 
 
