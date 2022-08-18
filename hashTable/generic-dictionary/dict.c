@@ -181,7 +181,7 @@ rehash(HashTable H)
   int i;
   for(i = 0; i < H->TableSize; i++)
   { 
-      if(H->TheCells[i].Info != Empty ) { // only copy the cell which is not empty
+      if(H->TheCells[i].Info == Legitimate ) { // only copy the cell which is not empty
         put(H->TheCells[i].Element.Key, H->TheCells[i].Element.Value, newH);
       }                  
   }

@@ -218,7 +218,10 @@ test_dictionary_removeKey_collision() {
     printDictionary(H, print_value_person);
     printf("\n key 4433ok %s\n", keyExist("4433ok", H) ? "exist" : "doesn't exist");
     printf("\n key 5533ok %s\n", keyExist("5533ok", H) ? "exist" : "doesn't exist");
-
+    printf("put 7788ab: {jack, 50}\n");
+    struct person *jack = initializePerson("jack", 50);
+    H = put("7788ab", jack, H);
+    printDictionary(H, print_value_person);
     DestroyTable(H);
 }
 
