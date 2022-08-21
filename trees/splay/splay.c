@@ -332,3 +332,18 @@ bst_print_dot(Splay T, FILE* stream)
   bst_print_dot_aux(T, stream);
   fprintf(stream,"}\n");
 }
+
+Splay 
+leftChild(Splay T) {
+    return T->Left;
+}
+
+Splay 
+rightChild(Splay T) {
+    return T->Right;
+}
+
+
+
+
+

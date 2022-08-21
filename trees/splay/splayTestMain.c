@@ -1,6 +1,7 @@
 #include "splay.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "ascii-tree.h"
 
 void generate_dot(Splay);
 void delete_tree(Splay);
@@ -20,12 +21,12 @@ main()
   printf("///////////////////////\n\n");
   
   test_find();              printf("==================\n");
-  test_insertion();         printf("==================\n");
-  test_insertion2();        printf("==================\n");  
-  test_findMin();           printf("==================\n");  
-  test_findMax();           printf("==================\n");  
-  test_delete();            printf("==================\n");
-  test_delete2();           printf("==================\n");
+  // test_insertion();         printf("==================\n");
+  // test_insertion2();        printf("==================\n");  
+  // test_findMin();           printf("==================\n");  
+  // test_findMax();           printf("==================\n");  
+  // test_delete();            printf("==================\n");
+  // test_delete2();           printf("==================\n");
   return 0;
 }
 
@@ -54,7 +55,7 @@ test_find()
   Splay T = initializeBST(test_array, 7);
   int target = 1;  
   printf("Before find: %d\n", target);
-  generate_dot(T);
+  print_ascii_tree(T);
   printf("Number of rotations: %d\n", getNumRotations());  
   T = find(target, T);
   printf("Find the element: %d\n", retrieve(T));

@@ -35,5 +35,6 @@ ET retrieve(Position);
 int getNumRotations();
 Splay initializeBST(ET*, int);
 void bst_print_dot(Splay, FILE*);
-
+Splay leftChild(Splay);
+Splay rightChild(Splay);
 #endif
