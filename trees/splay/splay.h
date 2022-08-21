@@ -25,8 +25,8 @@ typedef Position Splay;
 
 Splay makeEmpty(Splay);
 Position find(ET, Splay);
-Position findMin(Splay);
-Position findMax(Splay);
+Position splayFindMin(Splay);
+Position splayFindMax(Splay);
 Splay insert(ET, Splay);
 Splay insert2(ET, Splay);
 Splay delete(ET, Splay);

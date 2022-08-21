@@ -134,7 +134,7 @@ test_findMin()
   ET test_array[] = {2,1,3};
   Splay T = initializeBST(test_array, 3);
   generate_dot(T);
-  T = findMin(T);
+  T = splayFindMin(T);
   printf("The min element in the tree: %d\n", retrieve(T));
   generate_dot(T);
   delete_tree(T);
@@ -147,7 +147,7 @@ test_findMax()
   ET test_array[] = {2,1,3};
   Splay T = initializeBST(test_array, 3);
   generate_dot(T);
-  T = findMax(T);
+  T = splayFindMax(T);
   printf("The max element in the tree: %d\n", retrieve(T));
   generate_dot(T);
   delete_tree(T);

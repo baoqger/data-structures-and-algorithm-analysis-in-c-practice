@@ -135,7 +135,7 @@ find(ET elem, Splay T)
 }
 
 Position
-findMin(Splay T)
+splayFindMin(Splay T)
 {
   if (T == NULL)
     return NULL;
@@ -145,11 +145,11 @@ findMin(Splay T)
     return T;
   }
   else
-    return findMin(T->Left);
+    return splayFindMin(T->Left);
 }
 
 Position
-findMax(Splay T)
+splayFindMax(Splay T)
 {
   if (T != NULL)
     while (T->Right != NULL)
@@ -232,7 +232,7 @@ delete(ET elem, Splay T)
   Position LeftSubTree = T->Left;
   Position RightSubTree = T->Right;
   free(T);
-  T = findMax(LeftSubTree);
+  T = splayFindMax(LeftSubTree);
   T->Right = RightSubTree;
   return T;
 }
